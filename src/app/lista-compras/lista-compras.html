@@ -8,6 +8,8 @@
                [(ngModel)]="item" 
                placeholder="Digite o nome do item" />
         <button type="submit">Adicionar</button>
+
+        <button type="button" (click)="limparLista()" >Limpar Lista</button>
     </form>
 
     <table>
@@ -23,7 +25,11 @@
             @for( elemento of lista; track elemento.id ) {
                 <tr>
                     <td>{{ elemento.id }}</td>
-                    <td>{{ elemento.nome }}</td>
+                    <td>
+                        <span [ngClass]="{ 'item-riscado' : elemento.comprado }">
+                            {{ elemento.nome }}
+                        </span>
+                    </td>
                     <td><input type="checkbox" 
                                (click)="riscarItem(elemento)" 
                                [checked]="elemento.comprado" />
